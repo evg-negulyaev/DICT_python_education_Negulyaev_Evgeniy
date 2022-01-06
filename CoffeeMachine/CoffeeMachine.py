@@ -38,37 +38,89 @@ class CoffeeMachine:
         print(f"{self.money} of money")
 
     def buy_espresso(self):
+        water = 250
+        beans = 16
+
+        if self.water < water:
+            print("Sorry, not enough water!")
+            return
+        if self.beans < beans:
+            print("Sorry, not enough beans!")
+            return
+        if self.disposable_cups < 1:
+            print("Sorry, not enough disposable cups!")
+            return
+
+        print("I have enough resources, making you a coffee!")
         self.money += 4
-        self.water -= 250
-        self.beans -= 16
+        self.water -= water
+        self.beans -= beans
         self.disposable_cups -= 1
 
     def buy_latte(self):
+        water = 350
+        milk = 75
+        beans = 20
+
+        if self.water < water:
+            print("Sorry, not enough water!")
+            return
+        if self.milk < milk:
+            print("Sorry, not enough milk!")
+            return
+        if self.beans < beans:
+            print("Sorry, not enough beans!")
+            return
+        if self.disposable_cups < 1:
+            print("Sorry, not enough disposable cups!")
+            return
+
+        print("I have enough resources, making you a coffee!")
         self.money += 7
-        self.water -= 350
-        self.milk -= 75
-        self.beans -= 20
+        self.water -= water
+        self.milk -= milk
+        self.beans -= beans
         self.disposable_cups -= 1
 
     def buy_cappuccino(self):
+        water = 200
+        milk = 100
+        beans = 12
+
+        if self.water < water:
+            print("Sorry, not enough water!")
+            return
+        if self.milk < milk:
+            print("Sorry, not enough milk!")
+            return
+        if self.beans < beans:
+            print("Sorry, not enough beans!")
+            return
+        if self.disposable_cups < 1:
+            print("Sorry, not enough disposable cups!")
+            return
+
+        print("I have enough resources, making you a coffee!")
         self.money += 6
-        self.water -= 200
-        self.milk -= 100
-        self.beans -= 12
+        self.water -= water
+        self.milk -= milk
+        self.beans -= beans
         self.disposable_cups -= 1
 
     def buy(self):
         while True:
             print('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ', end='')
-            coffee_type = int(input())
-            if coffee_type == 1:
+            coffee_type = input()
+            if coffee_type == '1':
                 self.buy_espresso()
                 break
-            elif coffee_type == 2:
+            elif coffee_type == '2':
                 self.buy_latte()
                 break
-            elif coffee_type == 3:
+            elif coffee_type == '3':
                 self.buy_cappuccino()
+                break
+            elif coffee_type == 'back':
                 break
 
     def fill(self):
