@@ -19,9 +19,7 @@ def is_lowercase_english_letter(letter):
     return ord('a') <= ord(letter) <= ord('z')
 
 
-def main():
-    print("HANGMAN")
-
+def play():
     words = ['python', 'java', 'javascript', 'php']
     word_to_guess = random_word(words)
     guessed_letters = set()
@@ -52,6 +50,17 @@ def main():
         print("You survived!")
     else:
         print("You lost!")
+
+
+def main():
+    print("HANGMAN")
+    while True:
+        print('Type "play" to play the game, "exit" to quit: ', end='')
+        action = input()
+        if action == 'play':
+            play()
+        elif action == 'exit':
+            break
 
 
 if __name__ == "__main__":
