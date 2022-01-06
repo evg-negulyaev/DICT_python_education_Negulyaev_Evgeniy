@@ -5,6 +5,30 @@ class CoffeeMachine:
     beans = 120
     disposable_cups = 9
 
+    def __init__(self):
+        self.state = 'CHOICE_OF_ACTION'
+
+    def method(self, command):
+        if self.state == 'CHOICE_OF_ACTION':
+            if command == 'buy':
+                self.state = 'CHOICE_OF_COFFEE'
+            elif command == 'fill':
+                self.state = 'REFILLING'
+            elif command == 'take':
+                self.state = 'EXTRACTING_MONEY'
+            elif command == 'remaining':
+                self.state = 'REMAINING'
+            elif command == 'exit':
+                self.state = 'EXIT'
+        elif self.state == 'CHOICE_OF_COFFEE':
+            self.buy(command)
+        elif self.state == 'REFILLING':
+            self.fill(command)
+        elif self.state == 'EXTRACTING_MONEY':
+            self.take()
+        elif self.state == 'REMAINING':
+            self.balance()
+
     def make_coffee(self):
         print("Starting to make a coffee")
         print("Grinding coffee beans")
@@ -36,6 +60,7 @@ class CoffeeMachine:
         print(f"{self.beans} of coffee beans")
         print(f"{self.disposable_cups} of disposable cups")
         print(f"{self.money} of money")
+        self.state = 'CHOICE_OF_ACTION'
 
     def buy_espresso(self):
         water = 250
@@ -107,32 +132,32 @@ class CoffeeMachine:
         self.beans -= beans
         self.disposable_cups -= 1
 
-    def buy(self):
-        while True:
-            print('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ', end='')
-            coffee_type = input()
-            if coffee_type == '1':
-                self.buy_espresso()
-                break
-            elif coffee_type == '2':
-                self.buy_latte()
-                break
-            elif coffee_type == '3':
-                self.buy_cappuccino()
-                break
-            elif coffee_type == 'back':
-                break
+    def buy(self, coffee_type):
+        if coffee_type == '1':
+            self.buy_espresso()
+            self.state = 'CHOICE_OF_ACTION'
+        elif coffee_type == '2':
+            self.buy_latte()
+            self.state = 'CHOICE_OF_ACTION'
+        elif coffee_type == '3':
+            self.buy_cappuccino()
+            self.state = 'CHOICE_OF_ACTION'
+        elif coffee_type == 'back':
+            self.state = 'CHOICE_OF_ACTION'
 
-    def fill(self):
-        print("Write how many ml of water you want to add: ", sep='')
-        self.water += int(input())
-        print("Write how many ml of milk you want to add: ", sep='')
-        self.milk += int(input())
-        print("Write how many grams of coffee beans you want to add: ", sep='')
-        self.beans += int(input())
-        print("Write how many disposable coffee cups you want to add: ", sep='')
-        self.disposable_cups += int(input())
+    def fill(self, ingredients):
+        ing = ingredients.split(' ')
+        # print("Write how many ml of water you want to add: ", sep='')
+        self.water += int(ing[0])
+        # print("Write how many ml of milk you want to add: ", sep='')
+        self.milk += int(ing[1])
+        # print("Write how many grams of coffee beans you want to add: ", sep='')
+        self.beans += int(ing[2])
+        # print("Write how many disposable coffee cups you want to add: ", sep='')
+        self.disposable_cups += int(ing[3])
+        self.state = 'CHOICE_OF_ACTION'
 
     def take(self):
         print(f"I gave you {self.money}")
         self.money = 0
+        self.state = 'CHOICE_OF_ACTION'
