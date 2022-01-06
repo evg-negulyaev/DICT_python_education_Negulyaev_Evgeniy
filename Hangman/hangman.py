@@ -21,17 +21,28 @@ def main():
     words = ['python', 'java', 'javascript', 'php']
     word_to_guess = random_word(words)
     guessed_letters = set()
-    for _ in range(8):
+    attempts = 8
+    while attempts > 0:
         print()
         print(hint(word_to_guess, guessed_letters))
         print("Input a letter: ", end='')
         letter = input()
-        if letter in word_to_guess:
+        if letter in guessed_letters:
+            print("No improvements")
+            attempts -= 1
+        elif letter in word_to_guess:
             guessed_letters.add(letter)
         else:
-            print("That letter doesn't appear in the word ")
-    print("Thanks for playing!")
-    print("We'll see how well you did in the next stage")
+            print("That letter doesn't appear in the word")
+            attempts -= 1
+        if word_to_guess == hint(word_to_guess, guessed_letters):
+            break
+
+    if word_to_guess == hint(word_to_guess, guessed_letters):
+        print("You guessed the word!")
+        print("You survived!")
+    else:
+        print("You lost!")
 
 
 if __name__ == "__main__":
