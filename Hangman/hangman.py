@@ -1,7 +1,15 @@
+from random import randint
+
+
+def random_word(words):
+    return words[randint(0, len(words) - 1)]
+
+
 def main():
     print("HANGMAN")
 
-    word_to_guess = "python"
+    words = ['python', 'java', 'javascript', 'php']
+    word_to_guess = random_word(words)
     print("Guess the word: ", end="")
     word = input()
     if word_to_guess == word:
