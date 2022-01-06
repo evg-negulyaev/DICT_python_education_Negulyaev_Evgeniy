@@ -15,6 +15,10 @@ def random_word(words):
     return words[randint(0, len(words) - 1)]
 
 
+def is_lowercase_english_letter(letter):
+    return ord('a') <= ord(letter) <= ord('z')
+
+
 def main():
     print("HANGMAN")
 
@@ -28,13 +32,18 @@ def main():
         print("Input a letter: ", end='')
         letter = input()
         if letter in guessed_letters:
-            print("No improvements")
-            attempts -= 1
+            print("You've already guessed this letter")
+        elif len(letter) != 1:
+            print("You should input a single letter")
+        elif not is_lowercase_english_letter(letter):
+            print("Please enter a lowercase English letter ")
         elif letter in word_to_guess:
             guessed_letters.add(letter)
         else:
             print("That letter doesn't appear in the word")
             attempts -= 1
+            guessed_letters.add(letter)
+
         if word_to_guess == hint(word_to_guess, guessed_letters):
             break
 
