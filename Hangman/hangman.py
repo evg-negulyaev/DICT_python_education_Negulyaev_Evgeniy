@@ -1,6 +1,13 @@
 def main():
     print("HANGMAN")
-    print("The game will be available soon. ")
+
+    word_to_guess = "python"
+    print("Guess the word: ", end="")
+    word = input()
+    if word_to_guess == word:
+        print("You survived!")
+    else:
+        print("You lost!")
 
 
 if __name__ == "__main__":
