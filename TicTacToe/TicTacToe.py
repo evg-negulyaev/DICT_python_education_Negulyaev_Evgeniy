@@ -1,5 +1,5 @@
 class TicTacToe:
-    def __init__(self, inp):
+    def __init__(self, inp='_________'):
         self.field = [[inp[0], inp[1], inp[2]],
                       [inp[3], inp[4], inp[5]],
                       [inp[6], inp[7], inp[8]]]
@@ -64,6 +64,13 @@ class TicTacToe:
             return 'Draw'
         else:
             return 'Game not finished'
+
+    def cell_is_occupied(self, i, j):
+        return self.field[i - 1][j - 1] in ['X', 'O']
+
+    def add(self, cell, i, j):
+        if not self.cell_is_occupied(i, j):
+            self.field[i - 1][j - 1] = cell
 
     def to_string(self):
         result = '---------\n'
