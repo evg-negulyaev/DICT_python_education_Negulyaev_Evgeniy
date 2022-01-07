@@ -11,7 +11,7 @@ class Matrix:
             row = []
             elems = rows[i].split(' ')
             for e in elems:
-                row.append(int(e))
+                row.append(float(e))
             self.matrix.append(row)
 
     @staticmethod
@@ -49,6 +49,30 @@ class Matrix:
         for row in rows:
             res.append(' '.join(list(map(lambda x: str(x), row))))
         size = f"{matrix1.height} {matrix1.width}"
+        return Matrix(size, '\n'.join(res))
+
+    @staticmethod
+    def multiply(matrix1, matrix2):
+        matrix1: Matrix
+        matrix2: Matrix
+        if matrix1.width != matrix2.height:
+            return None
+
+        rows = []
+        for i in range(matrix1.height):
+            row = []
+            for j in range(matrix2.width):
+                num = 0
+                for k in range(matrix1.width):
+                    num += matrix1.matrix[i][k] * matrix2.matrix[k][j]
+                row.append(num)
+            rows.append(row)
+
+        size = f"{matrix1.height} {matrix2.width}"
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+
         return Matrix(size, '\n'.join(res))
 
     def to_string(self):
