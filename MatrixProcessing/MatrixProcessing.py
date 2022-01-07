@@ -19,6 +19,7 @@ def main():
 2. Multiply matrix by a constant 
 3. Multiply matrices 
 4. Transpose matrix 
+5. Calculate a determinant
 0. Exit ''')
         print('Your choice: ', end='')
         action = input()
@@ -76,6 +77,14 @@ def main():
             else:
                 print('The result is:')
                 print(result.to_string())
+        elif action == '5':
+            matrix = enter_matrix()
+            result = matrix.determinant()
+            if result is None:
+                print('ERROR')
+            else:
+                print('The result is:')
+                print(result)
 
         print()
 

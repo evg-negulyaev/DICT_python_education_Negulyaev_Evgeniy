@@ -147,6 +147,30 @@ class Matrix:
             res.append(' '.join(list(map(lambda x: str(x), row))))
         return Matrix(size, '\n'.join(res))
 
+    def minor(self, i, j):
+        rows = [row for k, row in enumerate(self.matrix) if k != i]
+        rows = [col for k, col in enumerate(zip(*rows)) if k != j]
+
+        size = f"{self.height - 1} {self.width - 1}"
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+        return Matrix(size, '\n'.join(res))
+
+    def determinant(self):
+        if self.height != self.width:
+            return None
+
+        size = self.height
+
+        if size == 1:
+            return self.matrix[1][1]
+
+        if size == 2:
+            return self.matrix[0][0] * self.matrix[1][1] - self.matrix[0][1] * self.matrix[1][0]
+
+        return sum((-1) ** j * self.matrix[0][j] * self.minor(0, j).determinant() for j in range(size))
+
     def to_string(self):
         result = ''
         for i in range(len(self.matrix)):
