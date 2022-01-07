@@ -18,7 +18,8 @@ def main():
         print('''1. Add matrices 
 2. Multiply matrix by a constant 
 3. Multiply matrices 
-0. Exit''')
+4. Transpose matrix 
+0. Exit ''')
         print('Your choice: ', end='')
         action = input()
 
@@ -49,6 +50,34 @@ def main():
             else:
                 print('The result is:')
                 print(result.to_string())
+        elif action == '4':
+            print('''
+1. Main diagonal 
+2. Side diagonal 
+3. Vertical line 
+4. Horizontal line''')
+            print('Your choice: ', end='')
+            choice = input()
+
+            matrix = enter_matrix()
+
+            result = None
+            if choice == '1':
+                result = Matrix.transpose_main_diagonal(matrix)
+            elif choice == '2':
+                result = Matrix.transpose_side_diagonal(matrix)
+            elif choice == '3':
+                result = Matrix.transpose_vertical(matrix)
+            elif choice == '4':
+                result = Matrix.transpose_horizontal(matrix)
+
+            if result is None:
+                print('ERROR')
+            else:
+                print('The result is:')
+                print(result.to_string())
+
+        print()
 
 
 if __name__ == '__main__':

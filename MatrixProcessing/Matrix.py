@@ -75,6 +75,78 @@ class Matrix:
 
         return Matrix(size, '\n'.join(res))
 
+    @staticmethod
+    def transpose_main_diagonal(matrix):
+        matrix: Matrix
+        if matrix.width != matrix.height:
+            return None
+
+        rows = []
+        for i in range(matrix.height):
+            row = []
+            for j in range(matrix.width):
+                row.append(matrix.matrix[j][i])
+            rows.append(row)
+
+        size = f"{matrix.height} {matrix.width}"
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+        return Matrix(size, '\n'.join(res))
+
+    @staticmethod
+    def transpose_side_diagonal(matrix):
+        matrix: Matrix
+        if matrix.width != matrix.height:
+            return None
+
+        rows = []
+        for i in range(matrix.height - 1, -1, -1):
+            row = []
+            for j in range(matrix.width - 1, -1, -1):
+                row.append(matrix.matrix[j][i])
+            rows.append(row)
+
+        size = f"{matrix.height} {matrix.width}"
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+        return Matrix(size, '\n'.join(res))
+
+    @staticmethod
+    def transpose_vertical(matrix):
+        matrix: Matrix
+
+        rows = []
+        for i in range(matrix.height):
+            row = []
+            for j in range(matrix.width - 1, -1, -1):
+                row.append(matrix.matrix[i][j])
+            rows.append(row)
+
+        size = f"{matrix.width} {matrix.height}"
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+        return Matrix(size, '\n'.join(res))
+
+    @staticmethod
+    def transpose_horizontal(matrix):
+        matrix: Matrix
+
+        rows = []
+        for i in range(matrix.height - 1, -1, -1):
+            row = []
+            for j in range(matrix.width):
+                row.append(matrix.matrix[i][j])
+            rows.append(row)
+
+        size = f"{matrix.height} {matrix.width}"
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+        return Matrix(size, '\n'.join(res))
+
     def to_string(self):
         result = ''
         for i in range(len(self.matrix)):
