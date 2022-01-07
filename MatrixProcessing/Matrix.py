@@ -171,6 +171,28 @@ class Matrix:
 
         return sum((-1) ** j * self.matrix[0][j] * self.minor(0, j).determinant() for j in range(size))
 
+    @staticmethod
+    def inverse(matrix):
+        if matrix.height != matrix.width:
+            return None
+
+        transposed = Matrix.transpose_main_diagonal(matrix)
+
+        rows = []
+        for i in range(transposed.height):
+            row = []
+            for j in range(transposed.width):
+                row.append((-1) ** (i + j) * transposed.minor(i, j).determinant())
+            rows.append(row)
+
+        size = f"{transposed.height} {transposed.width}"
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+        attached = Matrix(size, '\n'.join(res))
+
+        return Matrix.multiply_by_const(attached, 1 / matrix.determinant())
+
     def to_string(self):
         result = ''
         for i in range(len(self.matrix)):

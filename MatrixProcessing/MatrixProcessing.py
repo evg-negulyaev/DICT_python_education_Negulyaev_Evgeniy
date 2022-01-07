@@ -20,6 +20,7 @@ def main():
 3. Multiply matrices 
 4. Transpose matrix 
 5. Calculate a determinant
+6. Inverse matrix
 0. Exit ''')
         print('Your choice: ', end='')
         action = input()
@@ -85,6 +86,14 @@ def main():
             else:
                 print('The result is:')
                 print(result)
+        elif action == '6':
+            matrix = enter_matrix()
+            result = Matrix.inverse(matrix)
+            if result is None:
+                print('ERROR')
+            else:
+                print('The result is:')
+                print(result.to_string())
 
         print()
 
