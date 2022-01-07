@@ -4,23 +4,15 @@ from Matrix import Matrix
 def main():
     size = input()
     height = int(size.split(' ')[0])
-    rows1 = []
+    rows = []
     for _ in range(height):
-        rows1.append(input())
-    matrix1 = Matrix(size, '\n'.join(rows1))
+        rows.append(input())
+    matrix = Matrix(size, '\n'.join(rows))
 
-    size = input()
-    height = int(size.split(' ')[0])
-    rows2 = []
-    for _ in range(height):
-        rows2.append(input())
-    matrix2 = Matrix(size, '\n'.join(rows2))
+    const = int(input())
 
-    result = Matrix.add(matrix1, matrix2)
-    if result is None:
-        print('ERROR')
-    else:
-        print(result.to_string())
+    result = Matrix.multiply_by_const(matrix, const)
+    print(result.to_string())
 
 
 if __name__ == '__main__':

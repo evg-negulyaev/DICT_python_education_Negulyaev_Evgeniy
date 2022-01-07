@@ -35,6 +35,22 @@ class Matrix:
 
         return Matrix(size, '\n'.join(res))
 
+    @staticmethod
+    def multiply_by_const(matrix1, const):
+        matrix1: Matrix
+        rows = []
+        for i in range(matrix1.height):
+            row = []
+            for j in range(matrix1.width):
+                row.append(matrix1.matrix[i][j] * const)
+            rows.append(row)
+
+        res = []
+        for row in rows:
+            res.append(' '.join(list(map(lambda x: str(x), row))))
+        size = f"{matrix1.height} {matrix1.width}"
+        return Matrix(size, '\n'.join(res))
+
     def to_string(self):
         result = ''
         for i in range(len(self.matrix)):
