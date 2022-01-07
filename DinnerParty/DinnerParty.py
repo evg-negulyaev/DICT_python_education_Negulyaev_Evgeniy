@@ -20,12 +20,20 @@ def main():
         participants[name] = round(amount / num, 2)
 
     print('\nDo you want to use the "Who is lucky?" feature? Write Yes/No:')
-    if input() == 'Yes':
+    if input() != 'Yes':
+        print('No one is going to be lucky')
+    else:
         names = list(participants.keys())
         lucky = names[randint(0, len(names) - 1)]
         print(f'{lucky} is the lucky one!')
-    else:
-        print('No one is going to be lucky')
+        for name in participants.keys():
+            if name != lucky:
+                participants[name] = round(amount / (num - 1), 2)
+            else:
+                participants[name] = 0
+
+    print()
+    print(participants)
 
 
 if __name__ == '__main__':
