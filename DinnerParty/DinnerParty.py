@@ -10,6 +10,10 @@ def main():
     for _ in range(num):
         participants[input()] = 0
 
+    print('Enter the total amount:')
+    amount = int(input())
+    for name in participants.keys():
+        participants[name] = round(amount / num, 2)
     print(participants)
 
 
