@@ -5,11 +5,11 @@ class TicTacToe:
                       [inp[6], inp[7], inp[8]]]
 
     def to_string(self):
-        result = ''
+        result = '---------\n'
         for i in range(3):
+            result += '| '
             for j in range(3):
                 result += self.field[i][j] + ' '
-            result = result.strip()
-            result += '\n'
-        result = result.strip()
+            result += '|\n'
+        result += '---------'
         return result

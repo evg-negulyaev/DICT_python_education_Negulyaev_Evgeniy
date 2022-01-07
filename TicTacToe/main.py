@@ -2,7 +2,9 @@ from TicTacToe import TicTacToe
 
 
 def main():
-    tic_tac_toe = TicTacToe('XOXOXOXXO')
+    print('Enter cells: ', end='')
+    cells = input()
+    tic_tac_toe = TicTacToe(cells)
     print(tic_tac_toe.to_string())
 
 
